@@ -4,7 +4,7 @@
   "description": "spy on window.console",
   "main": "index.js",
   "scripts": {
-    "test": "zuul --local -- test.js"
+    "test": "zuul --local --ui=tape -- test.js"
   },
   "repository": {
     "type": "git",

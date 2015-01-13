@@ -13,7 +13,7 @@ $ npm install console-spy
 // console overrides are enabled by default,
 var spy = require('console-spy')()
 
-var example  = function () {
+var example = function () {
   console.log('First message')
 
   // but they can be disabled,

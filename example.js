@@ -1,7 +1,7 @@
 // console overrides are enabled by default,
 var spy = require('./')()
 
-var example  = function () {
+var example = function () {
   console.log('First message')
 
   // but they can be disabled,

@@ -4,7 +4,7 @@
   "description": "spy on window.console",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "zuul --local -- test.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,9 @@
   "homepage": "https://github.com/michaelrhodes/console-spy",
   "dependencies": {
     "emitter-component": "^1.1.1"
+  },
+  "devDependencies": {
+    "tape": "^3.0.3",
+    "zuul": "^1.16.4"
   }
 }

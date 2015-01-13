@@ -1,7 +1,7 @@
 {
   "name": "console-spy",
   "version": "0.0.0",
-  "description": "spy on window.console",
+  "description": "spy on window.console in the browser",
   "main": "index.js",
   "scripts": {
     "test": "zuul --local --ui=tape -- test.js"

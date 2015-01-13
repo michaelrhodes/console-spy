@@ -1,6 +1,6 @@
 {
   "name": "console-spy",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "spy on window.console in the browser",
   "main": "index.js",
   "scripts": {

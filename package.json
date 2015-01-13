@@ -1,0 +1,27 @@
+{
+  "name": "console-spy",
+  "version": "1.0.0",
+  "description": "spy on window.console",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:michaelrhodes/console-spy.git"
+  },
+  "keywords": [
+    "window.console",
+    "spy",
+    "hijack"
+  ],
+  "author": "Michael Rhodes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelrhodes/console-spy/issues"
+  },
+  "homepage": "https://github.com/michaelrhodes/console-spy",
+  "dependencies": {
+    "emitter-component": "^1.1.1"
+  }
+}

@@ -1,5 +1,7 @@
 # console-spy
-console-spy is a little browser module for listening in on calls made to the `window.console` object. When enabled, it replaces all methods on the console object with event-emitting proxies. 
+console-spy is a little browser module for listening in on calls made to the `window.console` object. When enabled, it replaces all methods on the console object with event-emitting proxies.
+
+*No badge to prove it, but this module is designed to work in all browsers; even old IE.*
 
 ## install
 ```sh

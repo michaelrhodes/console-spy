@@ -55,4 +55,5 @@ ConsoleSpy.prototype.disable = function () {
   }
 }
 
+exports.ConsoleSpy = ConsoleSpy
 module.exports = new ConsoleSpy

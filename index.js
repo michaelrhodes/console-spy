@@ -19,6 +19,10 @@ var methods = [
 var spying = false
 
 function ConsoleSpy () {
+  if (!(this instanceof ConsoleSpy)) {
+    return new ConsoleSpy
+  }
+
   this.console = {}
 
   ;(function process (spy, remaining) {
@@ -55,5 +59,4 @@ ConsoleSpy.prototype.disable = function () {
   }
 }
 
-exports.ConsoleSpy = ConsoleSpy
-module.exports = new ConsoleSpy
+module.exports = ConsoleSpy

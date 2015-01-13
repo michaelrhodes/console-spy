@@ -1,6 +1,8 @@
 var emitter = require('emitter-component')
+var methods = require('./methods')
 var slice = Array.prototype.slice
 
+var spying = false
 var console = (
   'console' in window &&
   'log' in window.console &&
@@ -9,15 +11,6 @@ var console = (
     null
 )
 
-var methods = [
-  'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
-  'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
-  'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-  'timeStamp', 'trace', 'warn'
-]
-
-var spying = false
-
 function ConsoleSpy () {
   if (!(this instanceof ConsoleSpy)) {
     return new ConsoleSpy
@@ -25,7 +18,7 @@ function ConsoleSpy () {
 
   this.console = {}
 
-  ;(function process (spy, remaining) {
+  ;(function proxy (spy, remaining) {
     var method = methods[--remaining]
 
     spy.console[method] = function () {
@@ -36,7 +29,7 @@ function ConsoleSpy () {
     }
 
     if (remaining) {
-      process(spy, remaining)
+      proxy(spy, remaining)
     }
   })(this, methods.length)
 

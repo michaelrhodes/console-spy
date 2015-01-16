@@ -35,7 +35,7 @@ spy.on('log', function () {
 })
 
 spy.on('warn', function () {
-  // arguments: ["On no!, 123"]
+  // arguments: ["On no!", 123]
 })
 
 example()

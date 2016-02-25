@@ -2,12 +2,13 @@ var emitter = require('emitter-component')
 var methods = require('./methods')
 var slice = Array.prototype.slice
 
+var root = (typeof window !== 'undefined' ? window : global);
 var spying = false
 var console = (
-  'console' in window &&
-  'log' in window.console &&
-  typeof window.console.log === 'function' ?
-    window.console :
+  'console' in root &&
+  'log' in root.console &&
+  typeof root.console.log === 'function' ?
+    root.console :
     null
 )
 
@@ -40,14 +41,14 @@ emitter(ConsoleSpy.prototype)
 
 ConsoleSpy.prototype.enable = function () {
   if (!spying) {
-    window.console = this.console
+    root.console = this.console
     spying = true
   }
 }
 
 ConsoleSpy.prototype.disable = function () {
   if (spying) {
-    window.console = console
+    root.console = console
     spying = false
   }
 }

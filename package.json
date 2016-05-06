@@ -1,17 +1,32 @@
 {
   "name": "console-spy",
   "version": "1.0.0",
-  "description": "spy on window.console in the browser",
+  "description": "listen in on calls made to the global console object",
   "main": "index.js",
+  "browser": {
+    "./console": "./console.browser"
+  },
+  "dependencies": {
+    "emitter-component": "~1.1.1",
+    "global": "~4.3.0"
+  },
+  "devDependencies": {
+    "tape": "~4.5.1",
+    "testling": "~1.7.1"
+  },
   "scripts": {
-    "test": "zuul --local --ui=tape -- test.js"
+    "test": "tape test.js",
+    "test:browser": "testling -u"
+  },
+  "testling": {
+    "files": "test.js"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:michaelrhodes/console-spy.git"
   },
   "keywords": [
-    "window.console",
+    "console",
     "spy",
     "hijack"
   ],
@@ -20,12 +35,5 @@
   "bugs": {
     "url": "https://github.com/michaelrhodes/console-spy/issues"
   },
-  "homepage": "https://github.com/michaelrhodes/console-spy",
-  "dependencies": {
-    "emitter-component": "^1.1.1"
-  },
-  "devDependencies": {
-    "tape": "^3.0.3",
-    "zuul": "^1.16.4"
-  }
+  "homepage": "https://github.com/michaelrhodes/console-spy"
 }

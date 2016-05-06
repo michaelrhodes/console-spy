@@ -1,6 +1,6 @@
 {
   "name": "console-spy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "listen in on calls made to the global console object",
   "main": "index.js",
   "browser": {

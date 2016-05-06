@@ -1,6 +1,6 @@
 var emitter = require('emitter-component')
-var methods = require('./methods')
-var console = require('./console')
+var methods = require('./lib/methods')
+var console = require('./lib/console')
 var slice = Array.prototype.slice
 var spying = false
 

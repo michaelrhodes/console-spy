@@ -4,7 +4,7 @@
   "description": "listen in on calls made to the global console object",
   "main": "index.js",
   "browser": {
-    "./console": "./console.browser"
+    "./lib/console": "./lib/console.browser"
   },
   "dependencies": {
     "emitter-component": "~1.1.1",

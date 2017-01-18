@@ -1,4 +1,4 @@
-var emitter = require('emitter-component')
+var emitter = require('mittens')
 var methods = require('./lib/methods')
 var console = require('./lib/console')
 var slice = Array.prototype.slice
@@ -27,7 +27,7 @@ function ConsoleSpy () {
   this.enable()
 }
 
-emitter(ConsoleSpy.prototype)
+emitter.call(ConsoleSpy.prototype)
 
 ConsoleSpy.prototype.enable = function () {
   if (!spying) {

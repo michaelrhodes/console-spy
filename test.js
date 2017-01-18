@@ -3,7 +3,7 @@ var enable = require('./')
 
 var teardown = function (spy) {
   spy.disable()
-  spy.removeAllListeners()
+  spy.off('log')
 }
 
 test('it is enabled on require', function (assert) {

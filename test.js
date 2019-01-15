@@ -1,41 +1,40 @@
 var test = require('tape')
-var enable = require('./')
+var spy = require('./')
 
-var teardown = function (spy) {
-  spy.disable()
-  spy.off('log')
-}
-
-test('it is enabled on require', function (assert) {
+test('it can be enabled', function (assert) {
   assert.plan(1)
 
-  var spy = enable()
+  var instance = spy()
+
+  instance.enable()
 
   var fail = setTimeout(function () {
-    spy.disable()
+    instance.disable()
     assert.fail('"log" event didn’t fire')
   }, 0)
 
-  spy.on('log', function () {
+  instance.on('log', function () {
     clearTimeout(fail)
-    spy.disable()
+    instance.disable()
     assert.pass('spied "foo"')
   })
   
   console.log('foo')
 
   setTimeout(function () {
-    teardown(spy)
+    teardown(instance)
   }, 0)
 })
 
 test('it can be disabled', function (assert) {
   assert.plan(1)
 
-  var spy = enable()
+  var instance = spy()
 
-  spy.on('log', function (msg) {
-    spy.disable()
+  instance.enable()
+
+  instance.on('log', function (msg) {
+    instance.disable()
     assert.equal(msg, 'foo', 'spied "foo"')
   })
 
@@ -43,6 +42,11 @@ test('it can be disabled', function (assert) {
 
   setTimeout(function () {
     console.log('bar')
-    teardown(spy)
+    teardown(instance)
   }, 0)
 })
+
+function teardown (instance) {
+  instance.disable()
+  instance.off('log')
+}

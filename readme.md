@@ -14,14 +14,14 @@ $ npm install console-spy
 ```js
 var spy = require('console-spy')()
 
-spy.on('log', function () {
+spy.log = function ($0) {
   // expected: ["First message"]
   // expected: ["Third message"]
-})
+}
 
-spy.on('warn', function () {
+spy.warn = function ($0, $1) {
   // expected: ["On no!", 123]
-})
+}
 
 // note: passing a truthy value to enable
 // will prevent calls from being passed

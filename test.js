@@ -8,22 +8,22 @@ test('it can be enabled', function (assert) {
 
   instance.enable()
 
-  var fail = setTimeout(function () {
+  var fail = timeout(function () {
     instance.disable()
-    assert.fail('"log" event didn’t fire')
-  }, 0)
+    assert.fail('"log" handler wasn’t called')
+  })
 
-  instance.on('log', function () {
+  instance.log = function () {
     clearTimeout(fail)
     instance.disable()
     assert.pass('spied "foo"')
-  })
-  
+  }
+
   console.log('foo')
 
-  setTimeout(function () {
+  timeout(function () {
     teardown(instance)
-  }, 0)
+  })
 })
 
 test('it can be disabled', function (assert) {
@@ -33,20 +33,23 @@ test('it can be disabled', function (assert) {
 
   instance.enable()
 
-  instance.on('log', function (msg) {
+  instance.log = function (val) {
     instance.disable()
-    assert.equal(msg, 'foo', 'spied "foo"')
-  })
+    assert.equal(val, 'foo', 'spied "foo"')
+  }
 
   console.log('foo')
 
-  setTimeout(function () {
+  timeout(function () {
     console.log('bar')
     teardown(instance)
-  }, 0)
+  })
 })
 
 function teardown (instance) {
   instance.disable()
-  instance.off('log')
+}
+
+function timeout (cb) {
+  return setTimeout(cb, 0)
 }

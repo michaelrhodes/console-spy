@@ -1,6 +1,6 @@
 {
   "name": "console-spy",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "main": "index.js",
   "browser": { "./lib/console": "./lib/browser-console" },
   "license": "CC0-1.0",

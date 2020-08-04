@@ -5,7 +5,7 @@ listen in on calls to the global `console` object
 
 ## install
 ```sh
-npm install console-spy
+npm install https://pkg.mkr.sx/console-spy/4.0.0.tgz
 ```
 
 ## use

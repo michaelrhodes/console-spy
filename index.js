@@ -1,48 +1,35 @@
-var methods = require('./lib/methods')
-var console = require('./lib/console')
-var spying = false
-
 module.exports = ConsoleSpy
 
-function ConsoleSpy () {
-  var spy = this
+var console = require('./lib/console')
+var methods = require('./lib/methods')
 
-  if (!(spy instanceof ConsoleSpy))
-    return new ConsoleSpy
+function ConsoleSpy (spies) {
+  if (!(this instanceof ConsoleSpy)) return new ConsoleSpy(spies)
 
-  spy.console = {}
-  spy.preventDefault = false
+  this.console = {}
+  this.enable(spies)
 
-  ;(function copy (remaining) {
-    var method = methods[--remaining]
-
+  ;(function bind (spy, remaining, method) {
+    method = methods[--remaining]
     spy.console[method] = function () {
-      var cb, fn = console.obj &&
-        typeof console.obj[method] === 'function' &&
-        console.obj[method]
-
-      var passthrough = !spy.preventDefault && !!fn
-      if (passthrough) fn.apply(console.obj, arguments)
-      if (cb = spy[method]) cb.apply(spy, arguments)
+      var sm = spy[method]
+      var wh = spy.withholding
+      var cm = console.object[method]
+      cm && !wh && cm.apply(console.object, arguments)
+      sm && sm.apply(spy, arguments)
     }
-
-    if (remaining) copy(remaining)
-  })(methods.length)
+    remaining && bind(spy, remaining)
+  })(this, methods.length)
 }
 
 ConsoleSpy.prototype.enable = enable
 ConsoleSpy.prototype.disable = disable
 
-function enable (preventDefault) {
-  if (spying) return
-  this.preventDefault = !!preventDefault
-  console.set(this.console)
-  spying = true
+function enable (spies) {
+  spies && spies.call(this)
+  this.enabled = !this.enabled && !!console.set(this.console)
 }
 
 function disable () {
-  if (!spying) return
-  this.preventDefault = false
-  console.set(console.obj)
-  spying = false
+  this.enabled = this.enabled && !console.set(console.object)
 }

@@ -1,17 +1,13 @@
 {
   "name": "console-spy",
-  "author": "Michael Rhodes",
   "version": "3.0.0",
   "main": "index.js",
-  "browser": {
-    "./lib/console": "./lib/console.browser"
-  },
-  "repository": "github:michaelrhodes/console-spy",
+  "browser": { "./lib/console": "./lib/browser-console" },
   "license": "MIT",
   "devDependencies": {
-    "tape": "~4.5.1"
+    "tape": "^5.0.1"
   },
   "scripts": {
-    "test": "tape test.js"
+    "test": "tape test"
   }
 }

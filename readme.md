@@ -1,32 +1,27 @@
 # console-spy
-a little module for listening in on calls made to the global `console` object
+listen in on calls to the global `console` object
 
-[![build status](https://travis-ci.org/michaelrhodes/console-spy.svg?branch=master)](https://travis-ci.org/michaelrhodes/console-spy)
-
-** No badge to prove it, but this module is designed to work in all browsers; even IE 6 and friends! **
+[![ci](https://travis-ci.org/michaelrhodes/console-spy.svg?branch=master)](https://travis-ci.org/michaelrhodes/console-spy)
 
 ## install
 ```sh
-$ npm install console-spy
+npm install console-spy
 ```
 
-## usage
+## use
 ```js
-var spy = require('console-spy')()
+var cs = require('console-spy')
 
-spy.log = function ($0) {
-  // expected: ["First message"]
-  // expected: ["Third message"]
-}
+var spy = cs(function () {
+  // Mixin custom handlers
+  this.warn = warn
+  this.log = log
 
-spy.warn = function ($0, $1) {
-  // expected: ["On no!", 123]
-}
+  // Withhold arguments
+  // from the real console
+  this.withholding = true
+})
 
-// note: passing a truthy value to enable
-// will prevent calls from being passed
-// through to the _real_ console
-spy.enable()
 console.log('First message')
 
 // spy can be disabled
@@ -40,4 +35,13 @@ console.log('Third message')
 // and all the console methods
 // can be spied upon
 console.warn('Oh no!', 123)
+
+function log () {
+  => ["First message"]
+  => ["Third message"]
+}
+
+function warn () {
+  => ["On no!", 123]
+}
 ```

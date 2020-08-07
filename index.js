@@ -1,7 +1,7 @@
 module.exports = ConsoleSpy
 
-var console = require('./lib/console')
-var methods = require('./lib/methods')
+var console = require('./util/console')
+var methods = require('./util/methods')
 
 function ConsoleSpy (spies) {
   if (!(this instanceof ConsoleSpy)) return new ConsoleSpy(spies)
